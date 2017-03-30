@@ -4,8 +4,6 @@ include_once ('db.php');
 if(isset($_POST['delete'])) {
     dbExecute('DELETE FROM `chocolate sale` WHERE id=?', array($_POST['delete_id']));
     echo "Record is deleted successfully.";
-} else {
-    echo "erorr";
 }
 
 $q = loadArray('SELECT *
@@ -22,61 +20,63 @@ $Retailer_milka_items = loadArray('SELECT items
         WHERE retailer = \'' . $_GET['retailer'] . '\' and product = \'milka\'');
 $Retailer_kinder_items = loadArray('SELECT items FROM `chocolate sale` 
         WHERE retailer = \'' . $_GET['retailer'] . '\' and product = \'kinder\'');
-
 $sum = 0;
-
-
 ?>
 
-    <table class="table table-bordered table-condensed">
-        <thead>
-        <tr>
-            <th>id</th>
-            <th>retailer</th>
-            <th>product</th>
-            <th>price</th>
-            <th>items</th>
-            <th>quarter</th>
-            <th>izbrisi</th>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <title>Bootstrap Example</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+    <body>
 
-        </tr>
-        </thead>
-        <tbody>
-        <?php while ($r = $q->fetch()): ?>
-            <?php
-            $sum += $r['price'] * $r['items'];
-            ?>
+    <div class="container">
+        <h2><?php echo $_GET['retailer']; ?></h2>
+        <p><?php $r = $q->fetch(); $sum += $r['price'] * $r['items']; echo 'Total income of the retailer is ' . $sum . ' din (average income per quarter is ' . $sum/4 . ' din.)'; ?></p>
+        <table class="table table-bordered table-condensed">
+            <thead>
             <tr>
-                <td><?php echo htmlspecialchars($r['id']);?></td>
-                <td><?php echo htmlspecialchars($r['retailer']); ?></td>
-                <td><?php echo htmlspecialchars($r['product']); ?></a></td>
-                <td><?php echo htmlspecialchars($r['price']); ?></td>
-                <td><?php echo htmlspecialchars($r['items']); ?></td>
-                <td><?php echo htmlspecialchars($r['quarter']); ?></td>
-                <form action="" method="post">
-                    <input type="hidden" name="delete_id" value='<?php echo htmlspecialchars($r['id']);?>'/>
-                <td><input type="submit" name="delete" value="Delete"/></td>
-                </form>
+                <th>id</th>
+                <th>retailer</th>
+                <th>product</th>
+                <th>price</th>
+                <th>items</th>
+                <th>quarter</th>
+                <th>izbrisi</th>
+                <th>change</th>
+
+
             </tr>
-        <?php endwhile; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <?php while ($r = $q->fetch()): ?>
+                <tr>
+                    <td><?php echo htmlspecialchars($r['id']);?></td>
+                    <td><?php echo htmlspecialchars($r['retailer']); ?></td>
+                    <td><?php echo htmlspecialchars($r['product']); ?></a></td>
+                    <td><?php echo htmlspecialchars($r['price']); ?></td>
+                    <td><?php echo htmlspecialchars($r['items']); ?></td>
+                    <td><?php echo htmlspecialchars($r['quarter']); ?></td>
+                    <form action="" method="post">
+                        <input type="hidden" name="delete_id" value"<?php echo htmlspecialchars($r['id']);?>"/>
+                        <td><input type="submit" name="delete" value="Delete"/></td>
+                    </form>
+                    <td><a href="update.php?id=<?php echo htmlspecialchars($r['id']);?>">update</a></td>
+                </tr>
+            <?php endwhile; ?>
+            </tbody>
+        </table>
+            <p><?php echo '<a href="index.php">back to home page</a>'; ?></p>
+    </div>
+    </body>
+    </html>
 
 
-<?php
-echo 'sumčina: ' . $sum;
-function quarter($x, $y, $m, $n)
-{
-    $z = $x * $y + $m * $n;
-    return $z;
-};
-echo "Total income from chocolate sale in first quarter is ", quarter(125, 78, 155, 53), " din.<br/>";
-echo "Total income from chocolate sale in second quarter is ", quarter(125, 91, 155, 54), " din.<br/>";
-echo "Total income from chocolate sale in third quarter is ", quarter(125, 101, 155, 77), " din.<br/>";
-echo "Total income from chocolate sale in fourth quarter is ", quarter(125, 56, 155, 67), " din.<br/>";
 
-function average($x, $y, $m, $n) {
-    return ($x + $y + $m + $n)/4;
-};
-echo "Average income from chocolate sale per quarter is ", average(quarter(125, 78, 155, 53), quarter(125, 91, 155, 54), quarter(125, 101, 155, 77), quarter(125, 56, 155, 67)), " din.<br/>";
-echo '<a href="index.php">vrati na index</a>';
+
+
