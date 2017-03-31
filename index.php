@@ -36,57 +36,108 @@
 <div class="container">
     <div class="row">
         <div class="col-sm-4">
-            <h3>Top 3 retailers</h3>
-            <p><a href="retailer.php?retailer=Vero">Vero</a><?php echo " - " . $vero; ?> </p>
-            <p><a href="retailer.php?retailer=Maxi">Maxi</a><?php echo " - " . $maxi; ?> </p>
-            <p><a href="retailer.php?retailer=Idea">Idea</a><?php echo " - " . $idea; ?> </p>
+            <h2>retailer - items sold</h2>
+            <p><a href="retailer.php?retailer=Vero"><button type="button" class="btn btn-danger">Super Vero</button></a><?php echo " - " . $vero; ?> </p>
+            <p><a href="retailer.php?retailer=Maxi"><button type="button" class="btn btn-danger">Maxi</button></a><?php echo " - " . $maxi; ?> </p>
+            <p><a href="retailer.php?retailer=Idea"><button type="button" class="btn btn-danger">Idea</button></a><?php echo " - " . $idea; ?> </p>
         </div>
         <div class="col-sm-4">
-            <h3>Brands</h3>
-            <p><a href="product-details.php?product=milka">Milka</a><?php echo " - " . $milka; ?></p>
-            <p><a href="product-details.php?product=kinder">Kinder</a><?php echo " - " . $kinder; ?></p>
+            <h2>brand - itams sold</h2>
+            <p><a href="product-details.php?product=kinder"><button type="button" class="btn btn-default">Kinder</button></a><?php echo " - " . $kinder; ?></p>
+            <p><a href="product-details.php?product=milka"><button type="button" class="btn btn-default">Milka</button></a><?php echo " - " . $milka; ?></p>
         </div>
         <div class="col-sm-4">
-            <h3>Insert</h3>
+            <h2>best retailer:</h2>
+                <?php
+                if($maxi > $vero && $maxi > $idea) {
+                    echo "Maxi sold the most items!";
+                } else if($vero > $maxi && $vero > $idea) {
+                    echo "Super Vero sold the most items!";
+                } else {
+                    echo "Idea sold the most items";//nije dovrsena, razmisljam kako da ubacim kada su neke 2 jednake
+                }
+                ?>
+            <h2>best product:</h2>
+                <?php
+                if($milka > $kinder) {
+                    echo "Milka sold the most itams!";
+                } else {
+                    echo "Kinder sold the most items!";
+                }
+                ?>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>insert new info</h2>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>category</th>
+                <th>value</th>
+            </tr>
+            </thead>
+            <tbody>
             <form action="index.php" method="post">
-                <p> retailer:
+            <tr>
+                <td>retailer:</td>
+                <td>
                     <select name="retailer">
                         <option value="Maxi">Maxi</option>
                         <option value="Idea">Idea</option>
                         <option value="Vero">Vero</option>
-                    </select>>
-                </p>
-                <p> product:
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>product:</td>
+                <td>
                     <select name="product">
                         <option value="milka">Milka</option>
                         <option value="kinder">Kinder</option>
                     </select>
-                </p>
-                <p> price:
+                </td>
+            </tr>
+            <tr>
+                <td>price:</td>
+                <td>
                     <select name="price">
-                        <?php for($i = 5; $i < 1000; $i += 5) {
+                        <?php for($i = 1; $i < 200; $i++) {
                             echo '<option value="' . $i . '">' . $i . ' din. </option>';
                         } ?>
                     </select>
-                </p>
-                <p> items:
-                    <select name="items">
-                        <?php for($i = 1; $i < 200; $i++) {
-                            echo '<option value="' . $i . '">' . $i . '</option>';
-                        } ?>
-                    </select>
-                </p>
-                <p> quarter:
-                    <select name="quarter">
-                        <?php for($i = 1; $i < 5; $i++) {
-                            echo '<option value="' . $i . '">' . $i . '</option>';
-                        } ?>
-                    </select>
-                </p>
-                <input type="submit" name="submit" value="Submit"/>
+                </td>
+            </tr>
+                <tr>
+                    <td>items:</td>
+                    <td>
+                        <select name="items">
+                            <?php for($i = 1; $i < 200; $i++) {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>quarter:</td>
+                    <td>
+                        <select name="quarter">
+                            <?php for($i = 1; $i < 5; $i++) {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" class="btn btn-info" name="submit" value="Submit">
+                    </td>
+                </tr>
             </form>
-        </div>
+            </tbody>
+        </table>
     </div>
+
 </div>
 </body>
 </html>

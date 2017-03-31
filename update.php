@@ -23,27 +23,54 @@
     <body>
     <div>
     <h1>Update</h1>
-        <form action="" method="post">
-            <p> retailer:
-                <input name="retailer" value="<?php echo htmlspecialchars($r['retailer']);?>"/>
-            </p>
-            <p> product:
-                <input name="product" value="<?php echo htmlspecialchars($r['product']); ?>"/>
-            </p>
-            <p> price:
-               <input name="price" value="<?php echo htmlspecialchars($r['price']); ?>"/>
-            </p>
-            <p> items:
-                <input name="items" value="<?php echo htmlspecialchars($r['items']); ?>"/>
-            </p>
-            <p> quarter:
-                <input name="quarter" value="<?php echo htmlspecialchars($r['quarter']); ?>"/>
-            </p>
-            <input type="submit" name="update" value="Update"/>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>category</th>
+                <th>value</th>
+            </tr>
+            </thead>
+            <tbody>
+            <form action="" method="post">
+                <tr>
+                    <td>retailer:</td>
+                    <td>
+                        <input name="retailer" value="<?php echo htmlspecialchars($r['retailer']);?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>product:</td>
+                    <td>
+                        <input name="product" value="<?php echo htmlspecialchars($r['product']); ?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>price:</td>
+                    <td>
+                        <input name="price" value="<?php echo htmlspecialchars($r['price']); ?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>items:</td>
+                    <td>
+                        <input name="items" value="<?php echo htmlspecialchars($r['items']); ?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>quarter:</td>
+                    <td>
+                        <input name="quarter" value="<?php echo htmlspecialchars($r['quarter']); ?>"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="update" value="Update"/></td>
+                </tr>
+            </form>
+            </tbody>
+        </table>
         </form>
-
-    <?php
-    echo '<a href="index.php">vrati na index</a>';
+        <?php
+    echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>';
     ?>
     </div>
     </body>

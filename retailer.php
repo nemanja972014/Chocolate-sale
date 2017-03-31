@@ -37,7 +37,7 @@ $sum = 0;
 
     <div class="container">
         <h2><?php echo $_GET['retailer']; ?></h2>
-        <p><?php $r = $q->fetch(); $sum += $r['price'] * $r['items']; echo 'Total income of the retailer is ' . $sum . ' din (average income per quarter is ' . $sum/4 . ' din.)'; ?></p>
+        <p><?php $r = $q->fetch(); $sum += $r['price'] * $r['items']; echo 'Total income of the retailer is ' . $sum . ' din (average income per quarter is ' . $sum/4 . ' din)'; ?></p>
         <table class="table table-bordered table-condensed">
             <thead>
             <tr>
@@ -63,15 +63,15 @@ $sum = 0;
                     <td><?php echo htmlspecialchars($r['items']); ?></td>
                     <td><?php echo htmlspecialchars($r['quarter']); ?></td>
                     <form action="" method="post">
-                        <input type="hidden" name="delete_id" value"<?php echo htmlspecialchars($r['id']);?>"/>
+                        <input type="hidden" name="delete_id" value="<?php echo htmlspecialchars($r['id']);?>"/>
                         <td><input type="submit" name="delete" value="Delete"/></td>
                     </form>
-                    <td><a href="update.php?id=<?php echo htmlspecialchars($r['id']);?>">update</a></td>
+                    <td><a href="update.php?id=<?php echo htmlspecialchars($r['id']);?>"><button type="button" class="btn btn-warning">Update</button></a></td>
                 </tr>
             <?php endwhile; ?>
             </tbody>
         </table>
-            <p><?php echo '<a href="index.php">back to home page</a>'; ?></p>
+            <p><?php echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>'; ?></p>
     </div>
     </body>
     </html>

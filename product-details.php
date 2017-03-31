@@ -47,5 +47,5 @@
     <?php endwhile; ?>
     </tbody>
 </table>
-        <p><?php echo '<a href="index.php">back to home page</a>'; ?></p>
+        <p><?php echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>'; ?></p>
 </div>
