@@ -25,17 +25,10 @@ $sum = 0;
 
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
+<?php include_once('header.php'); ?>
+    <body class="sales">
 
-    <div class="container">
+    < class="container">
         <h2><?php echo $_GET['retailer']; ?></h2>
         <p><?php $r = $q->fetch(); $sum += $r['price'] * $r['items']; echo 'Total income of the retailer is ' . $sum . ' din (average income per quarter is ' . $sum/4 . ' din)'; ?></p>
         <table class="table table-bordered table-condensed">
@@ -47,8 +40,9 @@ $sum = 0;
                 <th>price</th>
                 <th>items</th>
                 <th>quarter</th>
-                <th>izbrisi</th>
-                <th>change</th>
+                <th></th>
+                <th></th>
+
 
 
             </tr>
@@ -62,16 +56,21 @@ $sum = 0;
                     <td><?php echo htmlspecialchars($r['price']); ?></td>
                     <td><?php echo htmlspecialchars($r['items']); ?></td>
                     <td><?php echo htmlspecialchars($r['quarter']); ?></td>
+                    <td><div class="text"><a href="update.php?id=<?php echo htmlspecialchars($r['id']);?>"><button type="button" class="btn btn-warning">Update</button></a></div></td>
                     <form action="" method="post">
                         <input type="hidden" name="delete_id" value="<?php echo htmlspecialchars($r['id']);?>"/>
-                        <td><input type="submit" name="delete" value="Delete"/></td>
+                        <td><div class="text"><button type="submit" name="delete" class="btn btn-danger" value="Delete">Delete</button></div></td>
                     </form>
-                    <td><a href="update.php?id=<?php echo htmlspecialchars($r['id']);?>"><button type="button" class="btn btn-warning">Update</button></a></td>
+
                 </tr>
             <?php endwhile; ?>
             </tbody>
         </table>
-            <p><?php echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>'; ?></p>
+        <div class="text">
+        <?php
+        echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>';
+        ?>
+        </div>
     </div>
     </body>
     </html>

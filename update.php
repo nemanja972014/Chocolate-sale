@@ -12,65 +12,92 @@
 
     <!DOCTYPE html>
     <html lang="en">
-    <head>
-        <title>Bootstrap Example</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-    <div>
-    <h1>Update</h1>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>category</th>
-                <th>value</th>
-            </tr>
-            </thead>
-            <tbody>
-            <form action="" method="post">
-                <tr>
-                    <td>retailer:</td>
-                    <td>
-                        <input name="retailer" value="<?php echo htmlspecialchars($r['retailer']);?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>product:</td>
-                    <td>
-                        <input name="product" value="<?php echo htmlspecialchars($r['product']); ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>price:</td>
-                    <td>
-                        <input name="price" value="<?php echo htmlspecialchars($r['price']); ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>items:</td>
-                    <td>
-                        <input name="items" value="<?php echo htmlspecialchars($r['items']); ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td>quarter:</td>
-                    <td>
-                        <input name="quarter" value="<?php echo htmlspecialchars($r['quarter']); ?>"/>
-                    </td>
-                </tr>
-                <tr>
-                    <td><input type="submit" name="update" value="Update"/></td>
-                </tr>
+    <?php include_once('header.php'); ?>
+    <body class="sales">
+    <div class="row">
+        <div class="col-sm-4"></div>
+             <div class="col-sm-4">
+        <div>
+            <h2>update</h2>
+            <form action="index.php" method="post" id="myForm">
+                <div class="form-group-size">
+                    <label for="sel1">retailer:</label>
+                    <select name="retailer" class="form-control" id="retailer">
+                        <?php if($r['retailer'] == 'Vero'){
+                        echo '<option selected value="Vero">Vero</option>';
+                        } else {
+                            echo '<option value="Vero">Vero</option>';
+                        }
+                        if($r['retailer'] == 'Maxi'){
+                            echo '<option selected value="Maxi">Maxi</option>';
+                        } else {
+                            echo '<option value="Maxi">Maxi</option>';
+                        }
+                        if ($r['retailer'] == 'Idea') {
+                            echo '<option selected value="Idea">Idea</option>';
+                        } else {
+                            echo '<option value="Idea">Idea</option>';
+                        }
+                        ?>
+                    </select>
+                    <label for="sel1">product:</label>
+                    <select name="product" class="form-control" id="product">
+                        <?php if($r['product'] == 'kinder'){
+                            echo '<option selected value="kinder">kinder</option>';
+                        } else {
+                            echo '<option value="kinder">kinder</option>';
+                        }
+                        if($r['product'] == 'milka'){
+                            echo '<option selected value="milka">milka</option>';
+                        } else {
+                            echo '<option value="milka">milka</option>';
+                        }
+                        ?>
+                    </select>
+                    <label for="sel1">price:</label>
+                    <select name="price" class="form-control" id="price">
+                        <?php for($i = 1; $i < 200; $i++) {
+                            if($r['price'] == $i ){
+                                echo '<option selected value="' . $i . '">' . $i . ' din. </option>';
+                            }
+                            else{
+                                echo '<option value="' . $i . '">' . $i . ' din. </option>';
+                            }
+
+                        } ?>
+                    </select>
+                    <label for="sel1">items:</label>
+                    <select name="items" class="form-control" id="items">
+                        <?php for($i = 1; $i < 200; $i++) {
+                            if($r['items'] == $i){
+                                echo '<option selected value="' . $i . '">' . $i . '</option>';
+                            } else {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            }
+                        } ?>
+                    </select>
+                    <label for="sel1">quarter:</label>
+                    <select name="quarter" class="form-control" id="quarter">
+                        <?php for($i = 1; $i < 5; $i++) {
+                            if($r['quarter'] == $i){
+                                echo '<option selected value="' . $i . '">' . $i . '</option>';
+                            } else {
+                                echo '<option value="' . $i . '">' . $i . '</option>';
+                            }
+                        } ?>
+                    </select>
+                </div><br/>
+                <div class="text">
+                <button type="submit" name="update" class="btn btn-success">Update</button> <button name="reset" type="reset" class="btn btn-default">Reset</button><br/>
+                    <?php
+                    echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>';
+                    ?>
+                </div>
             </form>
-            </tbody>
-        </table>
-        </form>
-        <?php
-    echo '<a href="index.php"><button type="button" class="btn btn-link">home page</button></a>';
-    ?>
+        </div>
+    </div>
+        <div class="col-sm-4"></div>
     </div>
     </body>
+
+

@@ -1,5 +1,4 @@
-<
-?php
+<?php
 function getPDO(){
     return new PDO("mysql:host=localhost;dbname=proba", 'root', '');
 }
